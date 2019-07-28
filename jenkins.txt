@@ -1,0 +1,66 @@
+######################
+# CI using Jenkins
+######################
+***************
+Martin Fowler
+https://www.thoughtworks.com/continuous-integration
+***************
+
+***************
+Agenda
+***************
+
+1. Installation and Configuration
+2. Plugins
+3. Security and Access Control
+4. Global Tool settings
+5. Create some pipelines and jobs
+6. Upstream/downstream projects
+7. Parameterized builds
+8. Build Slave architecture
+9. Build Triggers
+
+
+
+=====================
+Definition
+=====================
+
+Continuous Integration (CI) is a development practice that requires developers to integrate code into a shared repository several times a day. Each check-in is then verified by an automated build, allowing teams to detect problems early.
+
+
+=====================
+Installation and Configuration
+=====================
+https://jenkins.io/download/
+
+## Install and verify Java
+sudo apt-get update
+sudo apt install openjdk-8-jdk
+java -version
+
+## Add key
+wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -
+
+## Add the following entry in your /etc/apt/sources.list:
+
+deb https://pkg.jenkins.io/debian-stable binary/
+or
+sudo echo "deb https://pkg.jenkins.io/debian-stable binary/" >> /etc/apt/sources.list
+
+## Update and install Jenkins
+sudo apt-get update
+sudo apt-get install jenkins -y
+
+##Access Jenkins Server on a web browser:
+<ipaddress>:8080
+
+## Copy the initialAdminPassword using the following command and paste in the browser window:
+sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+
+
+=====================
+=====================
+
+References:
+https://www.cloudbees.com/jenkins/jenkins-certification

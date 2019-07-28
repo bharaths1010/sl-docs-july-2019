@@ -87,7 +87,7 @@ git init
 git status
 git add <filename>
 git add . (git add *)
-git commit -a -m "Your commit message"
+git commit -am "Your commit message"
   -a => add/stage
   -m => commit message
 git log
@@ -143,16 +143,19 @@ This line was added on GitHub
 
 
 
-
-
 References:
 
 https://git-scm.com/
 https://www.atlassian.com/git/tutorials/merging-vs-rebasing
 https://git-scm.com/book/en/v2/Git-Branching-Rebasing
+https://www.atlassian.com/git/tutorials/saving-changes/git-stash
+https://git-scm.com/docs/git-stash
 
 
 
+Action Item:
+
+Pull Request
 
 
 
