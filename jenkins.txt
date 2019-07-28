@@ -13,13 +13,30 @@ Agenda
 1. Installation and Configuration
 2. Plugins
 3. Security and Access Control
+  => Manage Jenkins => Configure Global Security
 4. Global Tool settings
+    -> Install the tool on jenkins master/Slave
+    -> Install appropriate Jenkins plugin using "Manage Plugins" under "Manage Jenkins"
+    -> Configure Environment for the tool inside "Global Tool Settings"
 5. Create some pipelines and jobs
 6. Upstream/downstream projects
+  -> Upstream (triggers) ==> Downstream
+
+
 7. Parameterized builds
 8. Build Slave architecture
 9. Build Triggers
 
+***************
+Keywords
+***************
+
+Job = Project (Can be used interchangeably)
+Build => Interation of a specific job
+.jpi / .hpi
+hudson => Jenkins
+Jenkins home folder => /var/lib/jenkins
+Working directory (Workspace) /var/lib/jenkins/workspace/<project_name>/
 
 
 =====================
@@ -58,9 +75,58 @@ sudo apt-get install jenkins -y
 ## Copy the initialAdminPassword using the following command and paste in the browser window:
 sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 
+*****************
+AAA of Security
+*****************
+
+A => Authentication
+    (MFA => Multi-Factor Authentication)
+    - What you know => Credentials
+    - What you have => RSA/SoftToken/OTP
+    - What you are  => Biometric
+
+A => Authorization
+A => Accounting / Auditing / Logging
+
+
+*****************
+Maven Goals
+*****************
+
+mvn compile / test
+- compile
+- test
+- clean install
+- package (.jar /.war)
+- deploy
+
+
+1. Plugin Installation (Maven plugin is installed by default)
+2. Install the package on the machine (Jenkins Master or Slave)
+3. Configure the path / variable (Manage Jenkins => Global Tool Configuration)
+
+Exercise:
+
+1. Create a maven project/Job
+2. set up maven in global tool Configuration
+3. run the project and see if it successful.
+
 
 =====================
 =====================
 
 References:
 https://www.cloudbees.com/jenkins/jenkins-certification
+
+
+
+
+Action Items:
+
+For me:
+1. Videos for AWS and DO
+2. Jenkins+Jira
+
+Task:
+
+1. How to change the default jenkins port from 8080 => 9000
