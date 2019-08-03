@@ -21,11 +21,16 @@ Agenda
 5. Create some pipelines and jobs
 6. Upstream/downstream projects
   -> Upstream (triggers) ==> Downstream
-
-
 7. Parameterized builds
 8. Build Slave architecture
 9. Build Triggers
+  - manual build
+  - Build after other projects
+  - Build Periodically (similar to Crontab entries)
+  - Poll SCM
+  - Webhooks
+10. Pipeline-as-Code
+
 
 ***************
 Keywords
@@ -112,11 +117,77 @@ Exercise:
 3. run the project and see if it successful.
 
 
-=====================
-=====================
+=========================
+Build Slave architecture
+=========================
+What are build slaves?
+ - Jenkins Master + Multiple Jenkins Slaves
 
+Why Build Slaves?
+ -  Parallel development
+ - to cater to multiple types of environments
+
+================
+Build Triggers
+================
+   - manual build
+   - Build after other projects
+   - Build Periodically (similar to Crontab entries)
+   - Poll SCM
+   - Webhooks
+
+## GitHub Push settings for Automated builds
+  Step1: Create a new Authentication token in GitHub
+    - Login to GitHub page
+    - Go to profile settings
+    - Developer settings => Personal Access Tokens => Generate new Tokens
+    - Make sure you copy your new token somewhere in notepad
+
+  Step2: Update Jenkins "Configure System" with GitHub Token
+
+  Step3: At the job creation page (configure Job) make sure to check the following option:
+    "GitHub hook trigger for GITScm polling"
+
+=====================
+Jenkinsfile
+=====================
+#A sample Jenkinsfile
+
+pipeline {
+    agent any
+    tools {
+        maven 'localmaven'
+    }
+    stages {
+        stage('buildStage') {
+            steps {
+                echo "Building a maven project........!"
+                sh 'mvn compile'
+            }
+        }
+        stage('testingCode') {
+            steps {
+                echo "Testing........!"
+                sh 'mvn test'
+            }
+        }
+        stage('Clean up the Environment') {
+            steps {
+                echo "Cleaning up........!"
+                cleanWs()
+            }
+        }
+
+    }
+}
+
+=================
 References:
+=================
+
 https://www.cloudbees.com/jenkins/jenkins-certification
+https://jenkins.io/doc/pipeline/tour/hello-world/
+https://jenkins.io/doc/tutorials/build-a-java-app-with-maven/
 
 
 

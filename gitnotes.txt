@@ -102,6 +102,11 @@ git remote -v
 git remote add testdev https://github.com/sk12k/test-dev.git
 Pull vs Clone => Clone is first time, Pull/Push is for all subsequent operations to keep your repository in Sync.
 
+***Git Ignore***
+
+~/.gitignore
+~/.git/info/exclude
+
 =============================
 Branching and Merging
 =============================
