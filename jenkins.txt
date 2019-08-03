@@ -120,7 +120,6 @@ https://www.cloudbees.com/jenkins/jenkins-certification
 
 
 
-
 Action Items:
 
 For me:

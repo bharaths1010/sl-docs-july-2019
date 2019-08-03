@@ -1,0 +1,85 @@
+#########################
+Testing
+#########################
+
+Keywords:
+
+MVP => Minimum Viable product
+Acceptance criteria
+Burn-down Chart
+Andon Cord
+TTM => Time to Market (From Concept to Release)
+Canary Deployments
+A/B Testing
+API throttling
+Exponential Back-off and Jitter
+DDoS
+
+TDD => Test Driven Development
+BDD => Behavior Driven Development
+CDN => Content Delivery Network (Akamai, AWS CloudFront / Edge Locations)
+
+Why testing?
+  -
+- Selenium
+- Appium
+
+
+
+
+=======================
+Levels of Testing
+=======================
+
+- Unit
+- Integration
+- Regression Testing
+- System
+- Acceptance (Also known as UAT, typically takes place in Pre-Prod)
+
+TDD (Test Drive Development)
+  - Write the test cases (before you write your code)
+  - Run the tests and see them fail
+  - Write / Modify your code to make the tests pass
+  - Refactor and repeat
+
+BDD (Behavior Driven Development)
+  - Emphasis is on Collaboration
+3 Amigos
+  - Product Owner
+  - Developers
+  - Testers
+
+=> Scenarios
+  => Given .......
+  => When ........
+  => Then ........
+
+
+
+
+
+
+=======================
+Refernces
+=======================
+
+https://www.sixsigmadaily.com/what-is-an-andon-cord/
+https://www.inspec.io/
+https://smartbear.com/learn/automated-testing/software-testing-methodologies/
+https://www.guru99.com/levels-of-testing.html
+https://www.softwaretestinghelp.com/types-of-software-testing/
+https://automationpanda.com/2017/02/20/the-behavior-driven-three-amigos/
+
+
+
+
+
+
+
+
+
+
+
+
+.
