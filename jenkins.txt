@@ -188,15 +188,3 @@ References:
 https://www.cloudbees.com/jenkins/jenkins-certification
 https://jenkins.io/doc/pipeline/tour/hello-world/
 https://jenkins.io/doc/tutorials/build-a-java-app-with-maven/
-
-
-
-Action Items:
-
-For me:
-1. Videos for AWS and DO
-2. Jenkins+Jira
-
-Task:
-
-1. How to change the default jenkins port from 8080 => 9000
