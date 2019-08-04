@@ -2,8 +2,8 @@
 # Configuration Management
 ######################
 
-Puppet  => 2005
-Chef    => 2007
+Puppet  => 2005 (JVM Based)
+Chef    => 2007 (Erlang)
 Ansible => 2012 (was acquired by RedHat in 2015)
 ********************
 
@@ -28,6 +28,13 @@ Keywords
   - DigitalOcean  => Templates/Snapshots
 
 Standard / Golden Templates
+
+Why Configuration Management?
+  - Not to have Configuration Drift in your environment
+  - Self Healing
+  - Revert "Out-of-Band" changes
+  - Idempotence
+
 
 **********************
 Chef Resources:
@@ -59,11 +66,24 @@ end
 ***************
 Puppet Manifest
 ***************
-
-package { 'install_nginx':
-  name    => 'nginx',
-  ensure  => 'present',
+node default {
+package { 'tree':
+  ensure    => 'installed',
 }
+user { 'sk12k':
+  ensure    => 'present',
+  password  => 'mysuperpassword',
+}
+file { '/tmp/puppet.txt':
+  ensure => 'present',
+  content=> "This file was create via Puppet"
+}
+}
+
+***************
+site.pp and init.pp
+***************
+
 
 ## "=>" is called Hash-Rocket
 ***************
@@ -75,12 +95,37 @@ Ansible Playbook
     name: nginx
     state: present
 
+*****************
+Configuration Drift
+*****************
+
+Standard configuration:
+
+.net 4.5
+user x who has read permission on folder y
+port 7676 closed
+
+
+.Net => 5.0
+user x has now r/w permission on folder y
+port 7676 => open
+
+*****************
+
+*****************
+
+=> puppet agent -t
+=> agent sends facts to master (in the form of "Node Object")
+=> Master compiles the catalogue
+=> sends the catalogue back to agent
+=> Agent converges the catalogue and sends back the report to the Master
 
 
 
+References:
+https://www.puppetcookbook.com/
 
-
-
+Passwordless Authentication between 2 linux machines
 
 
 
