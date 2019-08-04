@@ -111,7 +111,7 @@ user x has now r/w permission on folder y
 port 7676 => open
 
 *****************
-
+Puppet Converge steps
 *****************
 
 => puppet agent -t
@@ -121,12 +121,16 @@ port 7676 => open
 => Agent converges the catalogue and sends back the report to the Master
 
 
+==================
+References
+==================
 
-References:
+https://docs.puppet.com/
 https://www.puppetcookbook.com/
-
-Passwordless Authentication between 2 linux machines
-
+https://www.edureka.co/blog/what-is-puppet/
+https://www.edureka.co/blog/chef-vs-puppet-vs-ansible-vs-saltstack/
+http://fullstack-puppet-docs.readthedocs.io/en/latest/puppet_manifests.html
+http://www.bogotobogo.com/DevOps/Puppet/puppet_basics_of_code_terminology.php
 
 
 .
