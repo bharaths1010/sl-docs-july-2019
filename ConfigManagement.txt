@@ -5,9 +5,10 @@
 Puppet  => 2005 (JVM Based)
 Chef    => 2007 (Erlang)
 Ansible => 2012 (was acquired by RedHat in 2015)
-********************
 
+********************
 Keywords
+********************
 
 - Configuration Management
 - Configuration Drift
@@ -48,7 +49,7 @@ Agent Less  => Ansible
 
 
 ***************
-Chef recipe:
+Chef recipe Example
 ***************
 
 package "nginx" do
@@ -64,7 +65,7 @@ service "nginx" do
 end
 
 ***************
-Puppet Manifest
+Puppet Manifest Example
 ***************
 node default {
 package { 'tree':
@@ -80,14 +81,9 @@ file { '/tmp/puppet.txt':
 }
 }
 
-***************
-site.pp and init.pp
-***************
-
-
 ## "=>" is called Hash-Rocket
 ***************
-Ansible Playbook
+Ansible Playbook Example
 ***************
 
 - name: install nginx
@@ -119,6 +115,128 @@ Puppet Converge steps
 => Master compiles the catalogue
 => sends the catalogue back to agent
 => Agent converges the catalogue and sends back the report to the Master
+
+===========================
+Sample manifest file
+===========================
+node default {
+  package { 'tree':
+    ensure    => 'installed'
+  }
+  user { 'sk12k':
+    ensure    => 'present',
+    password  => '123456'
+  }
+  file { '/tmp/info.txt':
+    ensure    => 'present',
+    content   => "This file has been created by puppetserver\n"
+  }
+  service { 'nginx':
+    ensure    => 'started'
+  }
+}
+
+===========================
+site.pp and init.pp
+===========================
+
+site.pp => Environment specific
+init.pp => Module specific (in chef it is known as default.rb)
+
+===========================
+Modules and Classes
+===========================
+
+cd /etc/puppetlabs/code/environments/production
+cd modules
+
+##before we work with modules we need to install pdk (puppet development kit)
+
+apt-get install pdk
+
+##Once installed we can generate our new module using the following command:
+
+pdk new module mynginx
+
+##It will prompt us to a series a questions which we need to answer appropriately.
+##Once all questions are answered it will create module successfully.
+
+cd mynginx
+
+##This is how the folder should look like:
+.
+└── mynginx
+    ├── CHANGELOG.md
+    ├── Gemfile
+    ├── Gemfile.lock
+    ├── README.md
+    ├── Rakefile
+    ├── appveyor.yml
+    ├── data
+    │   └── common.yaml
+    ├── examples
+    ├── files
+    ├── hiera.yaml
+    ├── manifests
+    ├── metadata.json
+    ├── spec
+    │   ├── default_facts.yml
+    │   └── spec_helper.rb
+    ├── tasks
+    └── templates
+
+- data - stores all the information about your Heira configuration.
+- files - there is where static files for nodes are stored
+- manifests - folder where all manifest files (.pp) are kept
+- spec - this one holds all the details about the plug-ins.
+- tasks - provides ad hoc command capability in puppet
+- templates - dynamic file creation on nodes based on some condition
+
+###Writing a Manifest (inside a module)
+
+pdk new class install
+# this will create a new file called manifests/install.pp
+
+vi manifests/install.pp
+
+class nginx::install {
+  package { 'install_nginx':
+    name   => 'nginx',
+    ensure => 'present',
+  }
+}
+
+##Testing your puppet code
+
+puppet parser validate manifests/install.pp
+
+##If nothing is returned, we know the file is properly formatted.
+
+pdk new class nginx
+vi manifests/init.pp
+
+class nginx {
+  contain nginx::install
+}
+
+## Edit site.pp file for production environment.
+
+vi /etc/puppetlabs/code/environments/production/manifests/site.pp
+
+node default {
+  include nginx::install
+}
+
+## We are all set from Puppet server side. Now go to Puppet Slave and run the following command:
+
+puppet agent -t
+
+##To confirm nginx installation, run the following command on Puppet Slave:
+
+which nginx
+
+Output:
+/usr/sbin/nginx
 
 
 ==================
