@@ -1,0 +1,87 @@
+######################
+# Configuration Management
+######################
+
+Puppet  => 2005
+Chef    => 2007
+Ansible => 2012 (was acquired by RedHat in 2015)
+********************
+
+Keywords
+
+- Configuration Management
+- Configuration Drift
+- Self-Healing
+- Out-of-Band Changes
+- Idempotence
+- Infrastructure-as-Code
+- Immutable Infrastructure
+- DSC => Desired State Configuration
+- DSL => Domain Specific Language
+- Declarative vs Imperative
+- Templates / Images
+  - VMware    => Templates
+  - AWS       => AMI (Amazon Machine Images)
+  - Docker    => Images
+  - Vagrant   => Box
+  - OpenStack => Images
+  - DigitalOcean  => Templates/Snapshots
+
+Standard / Golden Templates
+
+**********************
+Chef Resources:
+https://manage.chef.io/login
+Chef official Tutorials: https://learn.chef.io
+Infrastructure Automation Track: https://learn.chef.io/tracks/infrastructure-automation#/
+**********************
+
+Agent Based => Chef and Puppet
+Agent Less  => Ansible
+
+
+***************
+Chef recipe:
+***************
+
+package "nginx" do
+  action :install
+end
+
+user "sk12k" do
+  action :create
+end
+
+service "nginx" do
+  action :start
+end
+
+***************
+Puppet Manifest
+***************
+
+package { 'install_nginx':
+  name    => 'nginx',
+  ensure  => 'present',
+}
+
+## "=>" is called Hash-Rocket
+***************
+Ansible Playbook
+***************
+
+- name: install nginx
+  apt:
+    name: nginx
+    state: present
+
+
+
+
+
+
+
+
+
+
+.
